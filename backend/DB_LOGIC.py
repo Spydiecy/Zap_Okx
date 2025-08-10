@@ -5,8 +5,8 @@ import os
 # Load environment variables
 load_dotenv()
 MONGO_URI = os.getenv("MONGO_URI", "mongodb://localhost:27017/")
-DB_NAME = "FakeDB"
-COLLECTION_NAME = "dummy_user_book"
+DB_NAME = "OKX_DB"
+COLLECTION_NAME = "user_book"
 
 # MongoDB setup
 client = MongoClient(MONGO_URI)
@@ -18,7 +18,7 @@ collection.create_index("username", unique=False)
 
 def add_to_book(name: str, address: str) -> str:
     """
-    Adds a user and address to the dummy database.
+    Adds a user and address to the  database.
     Does not perform strict validation; suitable for placeholder use.
     """
     try:
@@ -57,7 +57,7 @@ def delete_user(name: str) -> str:
 
 def list_all_users() -> str:
     """
-    Returns all users in the dummy collection.
+    Returns all users in the  collection.
     """
     users = collection.find()
     return "\n".join([f"{u['username']} => {u['address']}" for u in users]) or "No users found"

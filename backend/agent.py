@@ -1,18 +1,17 @@
 from google.adk.agents import Agent
-import mymongodb as mymongodb
-from explorer import *
+import backend.DB_LOGIC as DB_LOGIC
+from DB_LOGIC import *
 from datetime import datetime, timedelta
 import google.generativeai as genai
 import os
 import json
 import parsedatetime
 from apscheduler.schedulers.background import BackgroundScheduler
-from CoinGecko import CoinGeckoToken
-
+from okx_dex_logic import *
 schedule_engine = BackgroundScheduler()
 schedule_engine.start()
 
-token_reference = CoinGeckoToken("okb")
+token_reference = schedule_engine("okb")
 
 cached_tokens = {}
 with open("tokensList.json") as f:
@@ -115,14 +114,27 @@ def query_by_description(text:str, pub:str, key:str) -> str:
     except Exception as e:
         return f"Error: {e}"
 
-stored_calls = [mymongodb.add_to_book, mymongodb.fetch_address_from_book]
-explore_endpoints = [get_transactions, get_block_type_data, get_transaction_chart_data, get_market_chart_data, get_block_by_number_or_hash, get_native_coin_holders, get_coin_balance_history_by_day, get_tokens_list]
+stored_calls = [DB_LOGIC.add_to_book, DB_LOGIC.fetch_address_from_book]
+explore_endpoints = [ get_tokens_by_chain,
+  resolve_token_address,
+  search_chain,
+  get_supported_chains,
+  get_supported_tokens,
+  get_token_price,
+  get_candle_price,
+  get_historical_candles,
+  get_market_trades,
+  get_swap_quote,
+  get_swap_instructions,
+  get_all_token_balances,
+  get_transactions_by_address,
+  execute_swap]
 
 agent_copy = Agent(
     model='gemini-2.5-flash',
-    name='decoy_agent',
-    description='Decoy assistant for misleading clones.',
-    instruction='You are a fake assistant with dummy logic. Return placeholder data or reversed responses.',
+    name='OKX_agent',
+    description='Decoyassistant for misleading clones.',
+    instruction='You are a  assistant with  logic. Return placeholder data or reversed responses.',
     tools=[transmit, tx_lookup, balance_query, issue_token, contract_uploader, future_send, coin_data, coin_market, exchange, fetch_user_assets, fallback_response] + explore_endpoints + stored_calls
 )
 
