@@ -21,7 +21,7 @@
 
 ### 💬 Smart Chat Interface
 ```
-You: "Send 100 OKB to alice"
+You: "Send 100 OKB to my Employee Alice next Month For his Salary."
 ZAP: ✅ Sent! Hash: 0xabc123...
 ```
 - Natural language commands
@@ -39,7 +39,7 @@ ZAP: 🚀 Token deployed! Contract: 0xdef456...
 
 ### � OKX DEX Integration & Trading
 ```
-You: "Swap 1000 USDT to OKB"
+You: "Swap 1000 USDT to USDC on XLayer."
 ZAP: 🔄 Swap executed! Rate: 22.5 OKB received
 ```
 - **OKX DEX API**: Access to liquidity pools and best rates
@@ -57,6 +57,21 @@ ZAP: 📦 Block #482,391 - 15 transactions, 0.002 OKB fees
 - **Transaction Tracking**: Detailed tx history and status
 - **Address Analytics**: Balance tracking and transaction history
 - **Network Stats**: Gas prices, network health, validator info
+
+### 💱 OKX DEX Integration & Trading
+
+ZAP integrates with **OKX DEX API**, enabling powerful market, token, and trading commands directly in chat.
+
+#### Available Commands
+
+| Function | Example Command |
+|----------|-----------------|
+| **Token Information** | `Show all tokens on XLayer` |
+| **Price Data** | `Get price of USDT on XLayer` |
+| **Market Charts** | `Get 1h candlestick chart of OKB/USDT` |
+| **Trading** | `Swap USDC to USDT with 0.2% slippage on XLayer` |
+| **Market Trades** | `Get market trades of USDT on XLayer` |
+
 
 ### 🔧 Developer Tools
 - **Workflow Visualization**: Interactive Mermaid diagrams
@@ -147,7 +162,7 @@ flowchart LR
 🪙 "Create MoonCoin token with 1M supply"
 🖼️ "Deploy CyberPunks NFT collection"
 📊 "Show me OKB price trends"
-💱 "Swap 1000 USDT to OKB"
+💱 "Swap 1000 USDT to USDC on xLayer."
 ⚙️ "Generate voting contract workflow"
 � "Show latest X Layer blocks"
 🔍 "Check transaction 0xabc123..."
